@@ -1,13 +1,13 @@
 from flask import Flask, render_template, send_from_directory, url_for, request, redirect
 from flask_login import LoginManager, login_manager, current_user, login_user, login_required, logout_user
 import requests
-import os, hashlib
+import os
 
 # Usuarios
 from models import users, User
 
 # Login
-from forms import LoginForm, RegistrationForm
+from forms import LoginForm
 
 app = Flask(__name__, static_url_path='')
 login_manager = LoginManager()
@@ -44,26 +44,6 @@ def login():
                 return redirect(url_for('index'))
 
         return render_template('login.html', form=form,  error=error)
-
-@app.route('/signup', methods=['GET','POST'])
-def register():
-    error=None
-    form = RegistrationForm(request.form if request.method == 'POST' else None)
-
-    if request.method == 'POST' and form.validate():
-        
-        if any(user.mail == form.email.data for user in users):
-            error = 'Correo ya esta en uso.'
-        else:
-            new_user = User(len(users)+1,form.username.data,form.username.email.data.encode('utf-8'))
-            hash_password = hashlib.sha256(form.password.data.encode('utf-8')).hexdigest()
-            users.append(new_user)
-            login_user(new_user)
-            #Al terminar de registrarse lo redireccionamos al login
-            return redirect(url_for('login'))
-    return render_template('signup.html',form=form, error=error)
-
-
 
 @app.route('/profile')
 @login_required

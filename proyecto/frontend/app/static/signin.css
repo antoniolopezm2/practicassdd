@@ -6,19 +6,13 @@ body {
 
 .form-signin {
   width: 100%;
-  max-width: 400px;
+  max-width: 330px;
   padding: 15px;
   margin: auto;
-  margin-top: 50px;
-  background-color: peachpuff;
 }
 
 .form-signin .checkbox {
-  font-weight: 600;
-}
-
-.form-signin .form-floating{
-  margin: 30px 0;
+  font-weight: 400;
 }
 
 .form-signin .form-floating:focus-within {
@@ -29,12 +23,10 @@ body {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
-  background-color: beige;
 }
 
 .form-signin input[type="password"] {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  background-color: beige;
 }

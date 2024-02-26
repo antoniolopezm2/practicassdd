@@ -1,0 +1,33 @@
+version: '3'
+services:
+
+  ssdd-frontend:
+    image: dsevilla/ssdd-frontend:1.0
+    ports:
+      - 5010:5000
+    env_file: sql.env
+    environment:
+      - FLASK_APP=app/app.py
+      - FLASK_DEBUG=true
+
+  db-mysql:
+    build: db-mysql/.
+    ports:
+      - 3306
+    env_file: sql.env
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=ssdd
+
+  backend-rest:
+    image: dsevilla/backend-rest:1.0
+    ports:
+      - 8080:8080
+    env_file: sql.env
+
+  backend-grpc:
+    image: dsevilla/backend-grpc:1.0
+    ports:
+      - 50051
+    env_file: sql.env
+

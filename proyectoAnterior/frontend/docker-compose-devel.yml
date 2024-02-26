@@ -1,0 +1,18 @@
+version: '2'
+services:
+
+  flask-example:
+    build:
+      context: .
+      dockerfile: Dockerfile-devel
+    ports:
+      - "5010:5000"
+    volumes:
+      - .:/ssdd-frontend
+    user: root
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    environment:
+      - FLASK_APP=app/app.py
+      - FLASK_DEBUG=false
+

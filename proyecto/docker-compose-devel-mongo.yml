@@ -10,6 +10,11 @@ services:
       - FLASK_APP=app/app.py
       - FLASK_DEBUG=true
 
+  ssdd-llamachat:
+    image: dsevilla/ssdd-llamachat:1.0
+    ports:
+      - 5020:5000
+
   db-mongo:
     build: db-mongo/.
     restart: always
